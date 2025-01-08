@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { baseURL } from "..";
 
 const ContactForm = ({ fetchContacts }) => {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
@@ -11,7 +12,7 @@ const ContactForm = ({ fetchContacts }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/contacts", formData);
+      await axios.post(`${baseURL}/api/contacts`, formData);
       fetchContacts();
       setFormData({ name: "", email: "", phone: "" });
     } catch (error) {
